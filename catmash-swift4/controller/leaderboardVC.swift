@@ -12,12 +12,15 @@ import SwiftyJSON
 class leaderboardVC: UITableViewController {
     
     @IBOutlet var customTableView: UITableView!
+    // leaderboard[X][0] is the identifier for element X
+    // leaderboard[X][1] is the score for element X
     var leaderboard = [[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // sort the new leaderboard obtained from segueWay
         leaderboard = sortLeaderboard(leaderboard: leaderboard)
-        print(leaderboard)
+        // reaload tableView with the new sorted data
         customTableView.reloadData()
     }
     
@@ -37,6 +40,7 @@ class leaderboardVC: UITableViewController {
         return cell
     }
     
+    // Sort an Array[[String]] by descending order
     func sortLeaderboard(leaderboard toSort: [[String]]) -> [[String]] {
         return leaderboard.sorted(by: { $0[1] > $1[1] })
     }
