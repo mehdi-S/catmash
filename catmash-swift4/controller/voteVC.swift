@@ -9,9 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Firebase
+import FirebaseDatabase
 
 class voteVC: UIViewController {
     
+    var ref: DatabaseReference!
     var catJson: JSON! = JSON.null
     var catJsonArray = [JSON]()
     // leaderboardArray[X][0] is the identifier for element X
@@ -24,6 +27,7 @@ class voteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
         downloadData(url: "https://latelier.co/data/cats.json")
         // Using GCD to get notified when the web request is done to refresh UI
         dispatchGroup.notify(queue: .main) {
