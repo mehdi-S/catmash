@@ -6,6 +6,8 @@ target 'catmash-swift4' do
   # Pods for catmash-swift4
   pod 'Alamofire', '4.5.0'
   pod 'SwiftyJSON'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
   target 'catmash-swift4Tests' do
     inherit! :search_paths

@@ -41,6 +41,7 @@
 /* Begin PBXFileReference section */
 		121D32700DE6256931D727EB /* Pods-catmash-swift4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catmash-swift4Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-catmash-swift4Tests/Pods-catmash-swift4Tests.release.xcconfig"; sourceTree = "<group>"; };
 		30B87D2953B5633592577BA9 /* Pods_catmash_swift4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catmash_swift4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E2C17791F9A39E2009C0323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3EBEBC111F93E129008C3C8F /* customCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
 		3EEED9AF1F8F011400357AAE /* catmash-swift4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "catmash-swift4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EEED9B21F8F011400357AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 				3EEED9B91F8F011400357AAE /* Assets.xcassets */,
 				3EEED9BB1F8F011400357AAE /* LaunchScreen.storyboard */,
 				3EEED9BE1F8F011400357AAE /* Info.plist */,
+				3E2C17791F9A39E2009C0323 /* GoogleService-Info.plist */,
 			);
 			path = "catmash-swift4";
 			sourceTree = "<group>";
@@ -380,12 +382,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-catmash-swift4/Pods-catmash-swift4-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
