@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftyJSON
+import Firebase
+import FirebaseDatabase
 
 class leaderboardVC: UITableViewController {
     
@@ -15,12 +17,14 @@ class leaderboardVC: UITableViewController {
     // leaderboard[X][0] is the identifier for element X
     // leaderboard[X][1] is the score for element X
     var leaderboard = [[String]]()
+    // Database reference
+    let ref = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // sort the new leaderboard obtained from segueWay
         leaderboard = sortLeaderboard(leaderboard: leaderboard)
-        // reaload tableView with the new sorted data
+        // reload tableView with the new sorted data
         customTableView.reloadData()
     }
     

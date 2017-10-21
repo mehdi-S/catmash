@@ -27,6 +27,7 @@ class voteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // setting up firebase database reference
         ref = Database.database().reference()
         downloadData(url: "https://latelier.co/data/cats.json")
         // Using GCD to get notified when the web request is done to refresh UI
@@ -85,6 +86,13 @@ class voteVC: UIViewController {
         for (index, element) in leaderboard.enumerated()  {
             if(element[0] == sender.titleLabel?.text) {
                 leaderboardArray[index][1] = String(Int(element[1])! + 1)
+                let leaderboardRef = self.ref.child("leaderboard").child(element[0]).child("score")
+                // Update database value for key element[0]
+                leaderboardRef.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
+                    let value = currentData.value as? Int ?? 0
+                    currentData.value = value + 1
+                    return TransactionResult.success(withValue: currentData)
+                }
             }
         }
     }
@@ -110,6 +118,24 @@ class voteVC: UIViewController {
             button.setTitle(self.pickRandomElem(leaderboard: leaderboard, exclude: buttonTitlesSet),for: .normal)
             buttonTitlesSet.append((button.titleLabel?.text)!)
         }
+    }
+    
+    func observeDatabase() -> Void {
+        // Database leaderboard reference
+        let scoresRef = self.ref.child("leaderboard")
+        let queryRef = scoresRef.queryOrdered(byChild: "score")
+        
+        queryRef.observeSingleEvent(of: .value, with: { snapshot in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let score = snap.childSnapshot(forPath: "score")
+                var row = [String]()
+                row.append(snap.key)
+                row.append(String(describing: score.value))
+                self.leaderboardArray.append(row)
+            }
+            print(self.leaderboardArray)
+        })
     }
 }
 

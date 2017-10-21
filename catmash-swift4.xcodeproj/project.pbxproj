@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E81E0718E6220E1FCA904CB /* Pods_catmash_swift4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E4B072CC8380FCB9E4E2DA /* Pods_catmash_swift4Tests.framework */; };
 		33D85AD7D1C1F082BE2B692E /* Pods_catmash_swift4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90369EB08519D46F03235570 /* Pods_catmash_swift4.framework */; };
+		3E69EECA1F9AC99400D1F2A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E69EEC91F9AC99400D1F2A2 /* GoogleService-Info.plist */; };
 		3EBEBC121F93E129008C3C8F /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBEBC111F93E129008C3C8F /* customCell.swift */; };
 		3EEED9B31F8F011400357AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEED9B21F8F011400357AAE /* AppDelegate.swift */; };
 		3EEED9B81F8F011400357AAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EEED9B61F8F011400357AAE /* Main.storyboard */; };
@@ -41,7 +42,7 @@
 /* Begin PBXFileReference section */
 		121D32700DE6256931D727EB /* Pods-catmash-swift4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catmash-swift4Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-catmash-swift4Tests/Pods-catmash-swift4Tests.release.xcconfig"; sourceTree = "<group>"; };
 		30B87D2953B5633592577BA9 /* Pods_catmash_swift4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catmash_swift4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E2C17791F9A39E2009C0323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3E69EEC91F9AC99400D1F2A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3EBEBC111F93E129008C3C8F /* customCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
 		3EEED9AF1F8F011400357AAE /* catmash-swift4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "catmash-swift4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EEED9B21F8F011400357AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		3EEED9A61F8F011400357AAE = {
 			isa = PBXGroup;
 			children = (
+				3E69EEC91F9AC99400D1F2A2 /* GoogleService-Info.plist */,
 				3EEED9B11F8F011400357AAE /* catmash-swift4 */,
 				3EEED9C61F8F011400357AAE /* catmash-swift4Tests */,
 				3EEED9D11F8F011400357AAE /* catmash-swift4UITests */,
@@ -142,7 +144,6 @@
 				3EEED9B91F8F011400357AAE /* Assets.xcassets */,
 				3EEED9BB1F8F011400357AAE /* LaunchScreen.storyboard */,
 				3EEED9BE1F8F011400357AAE /* Info.plist */,
-				3E2C17791F9A39E2009C0323 /* GoogleService-Info.plist */,
 			);
 			path = "catmash-swift4";
 			sourceTree = "<group>";
@@ -324,6 +325,7 @@
 				3EEED9BD1F8F011400357AAE /* LaunchScreen.storyboard in Resources */,
 				3EEED9BA1F8F011400357AAE /* Assets.xcassets in Resources */,
 				3EEED9B81F8F011400357AAE /* Main.storyboard in Resources */,
+				3E69EECA1F9AC99400D1F2A2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
