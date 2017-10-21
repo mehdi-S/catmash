@@ -20,6 +20,7 @@ class voteVC: UIViewController {
     // leaderboardArray[X][0] is the identifier for element X
     // leaderboardArray[X][1] is the score for element X
     var leaderboardArray = [[String]]()
+    var scoreArray = [[String]]()
     let dispatchGroup = DispatchGroup()
     
     @IBOutlet weak var voteButtonTop: UIButton!
@@ -31,6 +32,7 @@ class voteVC: UIViewController {
         ref = Database.database().reference()
         downloadData(url: "https://latelier.co/data/cats.json")
         // Using GCD to get notified when the web request is done to refresh UI
+        observeDatabase()
         dispatchGroup.notify(queue: .main) {
             self.updateButtons(leaderboard: self.leaderboardArray, UIbuttonArray: [self.voteButtonTop, self.voteButtonBot])
         }
@@ -45,7 +47,7 @@ class voteVC: UIViewController {
         if segue.identifier == "presentLeaderboardVC" {
             if let leaderboardVC = segue.destination as? leaderboardVC {
                 // Pass leaderboardArray to the next VC
-                leaderboardVC.leaderboard = self.leaderboardArray
+                leaderboardVC.leaderboard = self.scoreArray
             }
         }
     }
@@ -123,18 +125,18 @@ class voteVC: UIViewController {
     func observeDatabase() -> Void {
         // Database leaderboard reference
         let scoresRef = self.ref.child("leaderboard")
-        let queryRef = scoresRef.queryOrdered(byChild: "score")
         
-        queryRef.observeSingleEvent(of: .value, with: { snapshot in
+        scoresRef.observe(.value, with: { (snapshot) in
+            self.scoreArray = [[String]]()
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let score = snap.childSnapshot(forPath: "score")
                 var row = [String]()
                 row.append(snap.key)
-                row.append(String(describing: score.value))
-                self.leaderboardArray.append(row)
+                row.append("\(score.value ?? "0")")
+                self.scoreArray.append(row)
             }
-            print(self.leaderboardArray)
+            print(self.scoreArray)
         })
     }
 }
