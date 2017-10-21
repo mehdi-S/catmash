@@ -32,7 +32,6 @@ class voteVC: UIViewController {
         ref = Database.database().reference()
         downloadData(url: "https://latelier.co/data/cats.json")
         // Using GCD to get notified when the web request is done to refresh UI
-        observeDatabase()
         dispatchGroup.notify(queue: .main) {
             self.updateButtons(leaderboard: self.leaderboardArray, UIbuttonArray: [self.voteButtonTop, self.voteButtonBot])
         }
@@ -46,8 +45,7 @@ class voteVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "presentLeaderboardVC" {
             if let leaderboardVC = segue.destination as? leaderboardVC {
-                // Pass leaderboardArray to the next VC
-                leaderboardVC.leaderboard = self.scoreArray
+                // NEXT STEP
             }
         }
     }
@@ -120,24 +118,6 @@ class voteVC: UIViewController {
             button.setTitle(self.pickRandomElem(leaderboard: leaderboard, exclude: buttonTitlesSet),for: .normal)
             buttonTitlesSet.append((button.titleLabel?.text)!)
         }
-    }
-    
-    func observeDatabase() -> Void {
-        // Database leaderboard reference
-        let scoresRef = self.ref.child("leaderboard")
-        
-        scoresRef.observe(.value, with: { (snapshot) in
-            self.scoreArray = [[String]]()
-            for child in snapshot.children {
-                let snap = child as! DataSnapshot
-                let score = snap.childSnapshot(forPath: "score")
-                var row = [String]()
-                row.append(snap.key)
-                row.append("\(score.value ?? "0")")
-                self.scoreArray.append(row)
-            }
-            print(self.scoreArray)
-        })
     }
 }
 
