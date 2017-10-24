@@ -23,25 +23,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DS0-Hy-G15" userLabel="Image Stack View">
-                                <rect key="frame" x="38" y="126" width="300" height="475"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DS0-Hy-G15" userLabel="Image Stack View">
+                                <rect key="frame" x="30" y="94" width="315" height="543"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l0t-J3-teP">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="200.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="230"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="90C-t0-pnI">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="150.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="PPm-K0-TcL"/>
-                                                    <constraint firstAttribute="height" constant="150" id="jaW-XK-FCl"/>
-                                                </constraints>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-4i-azY">
-                                                <rect key="frame" x="0.0" y="150.5" width="300" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="Brd-1f-5dn"/>
-                                                    <constraint firstAttribute="height" constant="50" id="DES-l5-50V"/>
-                                                </constraints>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-4i-azY" customClass="customUIButton" customModule="catmash_swift4" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="230"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
                                                 <state key="normal">
                                                     <color key="titleColor" red="0.38431372549999998" green="0.25098039220000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,22 +40,24 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="230" id="1mp-DJ-un1"/>
+                                        </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx8-Po-DgX">
-                                        <rect key="frame" x="0.0" y="220.5" width="300" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="240" width="315" height="34.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34.5" id="0vF-3v-iQM"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rdo-QS-svC">
-                                        <rect key="frame" x="0.0" y="275" width="300" height="200"/>
+                                        <rect key="frame" x="0.0" y="284.5" width="315" height="258.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hy7-2v-KSd">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="LAU-ro-D8d"/>
-                                                    <constraint firstAttribute="width" constant="300" id="adb-8X-W0d"/>
-                                                </constraints>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hy7-2v-KSd" customClass="customUIButton" customModule="catmash_swift4" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="258.5"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
                                                 <state key="normal">
                                                     <color key="titleColor" red="0.93333333330000001" green="0.38431372549999998" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,22 +66,21 @@
                                                     <action selector="voteButtonPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QgJ-NZ-Xg1"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T0i-jz-qlT">
-                                                <rect key="frame" x="0.0" y="50" width="300" height="150"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="k0S-Nz-91M"/>
-                                                    <constraint firstAttribute="height" constant="150" id="nIn-Zr-mAt"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="230" id="TSd-Kl-pFN"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DS0-Hy-G15" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="FVg-os-9YQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DS0-Hy-G15" secondAttribute="trailing" constant="30" id="5q3-o2-yLq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DS0-Hy-G15" secondAttribute="bottom" constant="30" id="C5N-dA-q5U"/>
                             <constraint firstItem="DS0-Hy-G15" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YDo-T9-oCm"/>
+                            <constraint firstItem="DS0-Hy-G15" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="tZ1-NM-0Ex"/>
+                            <constraint firstItem="DS0-Hy-G15" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="zLm-Tq-qJ3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -102,8 +92,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageButtonBottom" destination="T0i-jz-qlT" id="GEt-59-MaF"/>
-                        <outlet property="imageButtonTop" destination="90C-t0-pnI" id="K2q-vT-vv3"/>
                         <outlet property="voteButtonBot" destination="Hy7-2v-KSd" id="ibq-PQ-sG7"/>
                         <outlet property="voteButtonTop" destination="TRs-4i-azY" id="IGM-fa-x53"/>
                     </connections>
@@ -131,7 +119,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BYy-nc-drL">
                                             <rect key="frame" x="8" y="0.5" width="359" height="50"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="HFB-RG-SAh">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingCat" translatesAutoresizingMaskIntoConstraints="NO" id="HFB-RG-SAh" customClass="customImageView" customModule="catmash_swift4" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="d7p-1L-pqK"/>
@@ -201,6 +189,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="image" width="1080" height="720"/>
+        <image name="loadingCat" width="256" height="256"/>
     </resources>
 </document>

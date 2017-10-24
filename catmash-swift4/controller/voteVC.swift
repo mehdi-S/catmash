@@ -19,31 +19,30 @@ class voteVC: UIViewController {
     var catJsonArray = [JSON]()
     // leaderboardArray[X][0] is the identifier for element X
     // leaderboardArray[X][1] is the score for element X
-    var leaderboardArray = [[String]]()
+    var urlArray = [[String]]()
+    var buttonTagArray = [String]()
     var scoreArray = [[String]]()
     let dispatchGroup = DispatchGroup()
     
-    @IBOutlet weak var voteButtonTop: UIButton!
-    @IBOutlet weak var voteButtonBot: UIButton!
-    @IBOutlet weak var imageButtonTop: UIImageView!
-    @IBOutlet weak var imageButtonBottom: UIImageView!
+    @IBOutlet weak var voteButtonTop: customUIButton!
+    @IBOutlet weak var voteButtonBot: customUIButton!
+    @IBOutlet weak var imageButtonTop: customImageView!
+    @IBOutlet weak var imageButtonBottom: customImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // setting up firebase database reference
         ref = Database.database().reference()
-        imageButtonTop.loadImageFromUrl(withUrl: "https://i.ytimg.com/vi/kxfeTcty3Do/maxresdefault.jpg", withDefault: #imageLiteral(resourceName: "photo"))
-        imageButtonBottom.loadImageFromUrl(withUrl: "https://i.ytimg.com/vi/kxfeTcty3Do/maxresdefault.jpg", withDefault: #imageLiteral(resourceName: "photo"))
         downloadData(url: "https://latelier.co/data/cats.json")
         // Using GCD to get notified when the web request is done to refresh UI
         dispatchGroup.notify(queue: .main) {
-            self.updateButtons(leaderboard: self.leaderboardArray, UIbuttonArray: [self.voteButtonTop, self.voteButtonBot])
+            self.updateButtons(leaderboard: self.urlArray, UIButtonArray: [self.voteButtonTop, self.voteButtonBot])
         }
     }
     
     @IBAction func voteButtonPressed(sender: UIButton) {
-        updateLeaderboard(leaderboard: self.leaderboardArray, sender: sender)
-        updateButtons(leaderboard: self.leaderboardArray, UIbuttonArray: [self.voteButtonTop, self.voteButtonBot])
+        updateLeaderboard(leaderboard: self.urlArray, sender: sender)
+        updateButtons(leaderboard: self.urlArray, UIButtonArray: [self.voteButtonTop, self.voteButtonBot])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,6 +50,7 @@ class voteVC: UIViewController {
             if let leaderboardVC = segue.destination as? leaderboardVC {
                 // NEXT STEP
                 // refresh leaderboard the first time we open it up (GCD)
+                leaderboardVC.urlArray = self.urlArray
             }
         }
     }
@@ -80,17 +80,16 @@ class voteVC: UIViewController {
             // creating row of Array[String]
             var row = [String]()
             row.append(obj.1["id"].stringValue)
-            row.append("0")
+            row.append(obj.1["url"].stringValue)
             // appending row[String] to leaderboardArray[[String]]
-            self.leaderboardArray.append(row)
+            self.urlArray.append(row)
         }
     }
     
     // Update the score of element <index> pressed by adding 1 to leaderboardArray[index][1]
     func updateLeaderboard(leaderboard: [[String]], sender: UIButton) {
-        for (index, element) in leaderboard.enumerated()  {
-            if(element[0] == sender.titleLabel?.text) {
-                leaderboardArray[index][1] = String(Int(element[1])! + 1)
+        for element in leaderboard  {
+            if(element[0] == buttonTagArray[sender.tag]) {
                 let leaderboardRef = self.ref.child("leaderboard").child(element[0]).child("score")
                 // Update database value for key element[0]
                 leaderboardRef.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
@@ -117,11 +116,24 @@ class voteVC: UIViewController {
     }
     
     // Update each buttons by picking a random element in given Array[[String]]
-    func updateButtons(leaderboard: [[String]] ,UIbuttonArray: [UIButton]) -> Void {
+    func updateButtons(leaderboard: [[String]] ,UIButtonArray: [customUIButton]) -> Void {
+        self.buttonTagArray = [String]()
         var buttonTitlesSet = [String]()
-        for button in UIbuttonArray {
-            button.setTitle(self.pickRandomElem(leaderboard: leaderboard, exclude: buttonTitlesSet),for: .normal)
-            buttonTitlesSet.append((button.titleLabel?.text)!)
+        var generatedId: String
+        var actualTag:Int = 0
+        
+        for button in UIButtonArray {
+            generatedId = self.pickRandomElem(leaderboard: leaderboard, exclude: buttonTitlesSet)
+            print(generatedId)
+            button.tag = actualTag
+            self.buttonTagArray.append(generatedId)
+            buttonTitlesSet.append(generatedId)
+            for item in urlArray {
+                if (item[0] == generatedId) {
+                    button.loadButtonImageFromUrl(withUrl: item[1], withDefault: #imageLiteral(resourceName: "loadingCat"))
+                }
+            }
+            actualTag = actualTag + 1
         }
     }
 }
