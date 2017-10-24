@@ -19,6 +19,8 @@ class leaderboardVC: UITableViewController {
     // leaderboard[X][0] is the identifier for element X
     // leaderboard[X][1] is the score for element X
     var leaderboard = [[String]]()
+    var urlArray = [[String]]()
+    var catJsonArray = [JSON]()
     // setting up firebase database reference
     let ref = Database.database().reference()
     
@@ -31,13 +33,12 @@ class leaderboardVC: UITableViewController {
         customRefreshControl.addTarget(self, action: #selector(refreshCellData(_:)), for: .valueChanged)
         customTableView.refreshControl = customRefreshControl
         // reload tableView with the new sorted data
-        customTableView.reloadData()
+        print(urlArray)
     }
     
     func observeDatabase() -> Void {
         // Database leaderboard reference
         let scoresRef = self.ref.child("leaderboard")
-        
         scoresRef.observe(.value, with: { (snapshot) in
             self.leaderboard = [[String]]()
             for child in snapshot.children {
@@ -71,7 +72,11 @@ class leaderboardVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.nameLabel.text = leaderboard[indexPath.row][0]
         cell.scoreLabel.text = leaderboard[indexPath.row][1]
-        
+        for item in urlArray {
+            if (item[0] == leaderboard[indexPath.row][0]) {
+                cell.profileImageView.loadImageFromUrl(withUrl: item[1], withDefault: #imageLiteral(resourceName: "loadingCat"))
+            }
+        }
         return cell
     }
     
