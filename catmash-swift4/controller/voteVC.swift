@@ -25,11 +25,15 @@ class voteVC: UIViewController {
     
     @IBOutlet weak var voteButtonTop: UIButton!
     @IBOutlet weak var voteButtonBot: UIButton!
+    @IBOutlet weak var imageButtonTop: UIImageView!
+    @IBOutlet weak var imageButtonBottom: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // setting up firebase database reference
         ref = Database.database().reference()
+        imageButtonTop.loadImageFromUrl(withUrl: "https://i.ytimg.com/vi/kxfeTcty3Do/maxresdefault.jpg", withDefault: #imageLiteral(resourceName: "photo"))
+        imageButtonBottom.loadImageFromUrl(withUrl: "https://i.ytimg.com/vi/kxfeTcty3Do/maxresdefault.jpg", withDefault: #imageLiteral(resourceName: "photo"))
         downloadData(url: "https://latelier.co/data/cats.json")
         // Using GCD to get notified when the web request is done to refresh UI
         dispatchGroup.notify(queue: .main) {
@@ -46,6 +50,7 @@ class voteVC: UIViewController {
         if segue.identifier == "presentLeaderboardVC" {
             if let leaderboardVC = segue.destination as? leaderboardVC {
                 // NEXT STEP
+                // refresh leaderboard the first time we open it up (GCD)
             }
         }
     }

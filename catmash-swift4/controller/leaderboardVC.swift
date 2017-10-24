@@ -31,13 +31,11 @@ class leaderboardVC: UITableViewController {
         customRefreshControl.addTarget(self, action: #selector(refreshCellData(_:)), for: .valueChanged)
         customTableView.refreshControl = customRefreshControl
         // reload tableView with the new sorted data
-        customTableView.reloadData()
     }
     
     func observeDatabase() -> Void {
         // Database leaderboard reference
         let scoresRef = self.ref.child("leaderboard")
-        
         scoresRef.observe(.value, with: { (snapshot) in
             self.leaderboard = [[String]]()
             for child in snapshot.children {
@@ -71,6 +69,7 @@ class leaderboardVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.nameLabel.text = leaderboard[indexPath.row][0]
         cell.scoreLabel.text = leaderboard[indexPath.row][1]
+        cell.profileImageView.loadImageFromUrl(withUrl: "http://phandroid.s3.amazonaws.com/wp-content/uploads/2015/02/galaxy-wallpaper-4.jpg", withDefault: #imageLiteral(resourceName: "photo"))
         
         return cell
     }
