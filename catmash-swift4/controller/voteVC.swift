@@ -26,8 +26,6 @@ class voteVC: UIViewController {
     
     @IBOutlet weak var voteButtonTop: customUIButton!
     @IBOutlet weak var voteButtonBot: customUIButton!
-    @IBOutlet weak var imageButtonTop: customImageView!
-    @IBOutlet weak var imageButtonBottom: customImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

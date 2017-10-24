@@ -70,12 +70,19 @@ class leaderboardVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
-        cell.nameLabel.text = leaderboard[indexPath.row][0]
+        let rank = indexPath.row + 1
+        
+        cell.tag = rank
         cell.scoreLabel.text = leaderboard[indexPath.row][1]
         for item in urlArray {
             if (item[0] == leaderboard[indexPath.row][0]) {
                 cell.profileImageView.loadImageFromUrl(withUrl: item[1], withDefault: #imageLiteral(resourceName: "loadingCat"))
             }
+        }
+        if let medal = UIImage.init(named: "\(cell.tag)") {
+            cell.medalImageView.image = medal
+        } else {
+            cell.medalImageView.image = #imageLiteral(resourceName: "blank")
         }
         return cell
     }

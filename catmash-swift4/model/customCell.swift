@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class customCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var profileImageView: customImageView!
+    @IBOutlet weak var medalImageView: UIImageView!
 }
