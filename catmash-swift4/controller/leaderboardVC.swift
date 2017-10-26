@@ -33,7 +33,8 @@ class leaderboardVC: UITableViewController {
         customRefreshControl.addTarget(self, action: #selector(refreshCellData(_:)), for: .valueChanged)
         customTableView.refreshControl = customRefreshControl
         // reload tableView with the new sorted data
-        print(urlArray)
+        //print(urlArray)
+        customTableView = decorateTableViewBackground(tableView: customTableView, withBackgroundImage: #imageLiteral(resourceName: "pulldown"), withBackgroundColor: UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1.00))
     }
     
     func observeDatabase() -> Void {
@@ -50,7 +51,7 @@ class leaderboardVC: UITableViewController {
                 self.leaderboard.append(row)
             }
             self.leaderboard = self.sortLeaderboard(leaderboard: self.leaderboard)
-            print(self.leaderboard)
+            //print(self.leaderboard)
         })
     }
     
@@ -69,26 +70,42 @@ class leaderboardVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
-        let rank = indexPath.row + 1
-        
-        cell.tag = rank
-        cell.scoreLabel.text = leaderboard[indexPath.row][1]
-        for item in urlArray {
-            if (item[0] == leaderboard[indexPath.row][0]) {
-                cell.profileImageView.loadImageFromUrl(withUrl: item[1], withDefault: #imageLiteral(resourceName: "loadingCat"))
+            let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
+            let rank = indexPath.row + 1
+
+            cell.tag = rank
+            cell.scoreLabel.text = leaderboard[indexPath.row][1]
+            for item in urlArray {
+                if (item[0] == leaderboard[indexPath.row][0]) {
+                    cell.profileImageView.loadImageFromUrl(withUrl: item[1], withDefault: #imageLiteral(resourceName: "loadingCat"))
+                }
             }
-        }
-        if let medal = UIImage.init(named: "\(cell.tag)") {
-            cell.medalImageView.image = medal
-        } else {
-            cell.medalImageView.image = #imageLiteral(resourceName: "blank")
-        }
-        return cell
+            if let medal = UIImage.init(named: "\(cell.tag)") {
+                cell.medalImageView.image = medal
+            } else {
+                cell.medalImageView.image = #imageLiteral(resourceName: "blank")
+            }
+
+            return cell
     }
     
     // Sort an Array[[String]] by descending order
     func sortLeaderboard(leaderboard toSort: [[String]]) -> [[String]] {
         return leaderboard.sorted { $0[1].compare($1[1], options: .numeric) == ComparisonResult.orderedDescending }
+    }
+    
+    func decorateTableViewBackground(tableView: UITableView, withBackgroundImage background: UIImage, withBackgroundColor color: UIColor?) -> UITableView {
+        let backgroundImage = UIImageView()
+        let newTableView = tableView
+        
+        backgroundImage.image = background
+        backgroundImage.contentMode = .scaleAspectFit
+        newTableView.backgroundView = backgroundImage
+        if let bgColor = color {
+            newTableView.backgroundColor = bgColor
+        }
+        newTableView.tableFooterView = UIView(frame: .zero)
+
+        return newTableView
     }
 }
