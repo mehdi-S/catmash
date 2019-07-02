@@ -55,7 +55,7 @@ class voteVC: UIViewController {
     
     func downloadData(url: String) {
         self.dispatchGroup.enter()
-        Alamofire.request(url, method: .get).validate().responseJSON { response in
+        AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 // If request is successfull, transform the response for easier use

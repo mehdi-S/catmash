@@ -34,7 +34,7 @@ class leaderboardVC: UITableViewController {
         customTableView.refreshControl = customRefreshControl
         // reload tableView with the new sorted data
         //print(urlArray)
-        customTableView = decorateTableViewBackground(tableView: customTableView, withBackgroundImage: #imageLiteral(resourceName: "pulldown"), withBackgroundColor: UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1.00))
+        customTableView = decorateTableViewBackground(tableView: customTableView, withBackgroundImage: #imageLiteral(resourceName: "pulldown"), withBackgroundColor: UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1.0))
     }
     
     func observeDatabase() -> Void {

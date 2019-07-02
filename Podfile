@@ -4,7 +4,7 @@ platform :ios, '11.0'
 target 'catmash-swift4' do
   use_frameworks!
   # Pods for catmash-swift4
-  pod 'Alamofire', '4.5.0'
+  pod 'Alamofire', '~> 5.0.0-beta.5'
   pod 'SwiftyJSON'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
